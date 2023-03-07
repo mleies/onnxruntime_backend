@@ -22,7 +22,7 @@ This repo merges the above PR into the 22.07 (2.24.0) version of the Onnx Runtim
        git clone  --branch v2.24.0 --depth 1  git@github.com:triton-inference-server/server.git
 3. Follow instruction here (build.md) to build the Triton Server.  Need to build the Triton server as this creates a docker container with all the dependencies needed for building the onnx backend.  To build run:
 
-        python ./build.py –enable-all
+        python ./build.py --enable-all
 
    Note: check as my onnx backend install seems to have fewer shared libraries bundled with it vs the 22.07 image
 
@@ -63,7 +63,8 @@ This repo merges the above PR into the 22.07 (2.24.0) version of the Onnx Runtim
 ## ToDo:
 - add building this backend to the IS 0.3 build process
 - test throughput on an instance where we fully load the cache, eg a true 4 core machine, or a much larger instance.  Issue is on a virtualised machine the CPU cache is not virtualised so if we are on a 4 core instance running on a 32 core machine we maek use of bigger caches than are realistic.
-- confirm backent set of library .so files matches with those in the standard container.
+- confirm backend set of library .so files matches with those in the standard container.
+  - tried this with --enable-all, still seem to have a lesser set of libraries
 - push to get this merged
 
 
