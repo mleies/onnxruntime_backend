@@ -55,10 +55,19 @@ This repo merges the above PR into the 22.07 (2.24.0) version of the Onnx Runtim
           ${DOCKER_IMAGE} \
           /bin/bash ${SCRIPTS_DIR}/triton.sh
 
-8. Some basic testing:
+8. Update Model config files, to include `share_session` in the parameters section:
+
+       parameters [
+         { key: "intra_op_thread_count" value: { string_value: "1" } },
+         { key: "share_session" value: { string_value: "true" } }
+       ] adf
+
+9. Some basic testing:
   - Original model config:  memory usage = 2.68 GiB
   - 1 instance per model config: memory usage = 612 MiB
   - 4 instandes per model, shared session config: memory usage = 593 MiB
+
+
 
 ## ToDo:
 - add building this backend to the IS 0.3 build process
